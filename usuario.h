@@ -1,13 +1,13 @@
 #pragma once
 #include <iostream>
-	
+#include <string>	
 
 class Usuario
 {
 private:
 	std::string _nome;
 	//Tipo de Lixo que o usuáro possui (Tipo Lixo)
-	Lixo _resiudo;
+	Lixo _residuo;
 	//Endereco do usuario (Tipo Lugar)
 	Lugar _endereco;
 public:
