@@ -1,4 +1,7 @@
 #include "lixo.h"
+#include <string>
+
+using namespace std;
 
 Lixo::Lixo(string nome){
     this->_nome = nome;
