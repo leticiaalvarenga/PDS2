@@ -15,7 +15,7 @@ class Lixo{
             bool _is_organico;
 
         public:
-            Lixo(string, bool, bool, bool, bool, bool, bool, bool, bool); //Criar lixo
+            Lixo(string); //Criar lixo
             string Atualizar_lixo(bool, bool, bool, bool, bool, bool, bool); //Atualizar lixo
             //Lixo Buscar_lixo(string); //Buscar lixo
 
