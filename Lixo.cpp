@@ -29,7 +29,10 @@ string Lixo::Atualizar_lixo(bool is_toxico, bool is_perecivel, bool is_cortante,
     return sucesso;
 }
 
-//Lixo Lixo::Buscar_lixo(string nome){}
+Lixo::~Lixo(){
+    cout << "Lixo apagado com sucesso!" << endl;
+}
+
 
 
 
