@@ -16,6 +16,7 @@ class Lixo{
         public:
             Lixo(std::string); //Criar lixo
             string Atualizar_lixo(bool, bool, bool, bool, bool, bool, bool); //Atualizar lixo
+            virtual ~Lixo();
 
 
 
