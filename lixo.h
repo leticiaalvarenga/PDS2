@@ -3,8 +3,7 @@
 
 class Lixo{
         private:
-            string _nome;
-            //string _descricao;
+            std::string _nome;
             bool _is_toxico;
             bool _is_perecivel;
             bool _is_cortante;
@@ -15,9 +14,8 @@ class Lixo{
             bool _is_organico;
 
         public:
-            Lixo(string); //Criar lixo
+            Lixo(std::string); //Criar lixo
             string Atualizar_lixo(bool, bool, bool, bool, bool, bool, bool); //Atualizar lixo
-            //Lixo Buscar_lixo(string); //Buscar lixo
 
 
 
