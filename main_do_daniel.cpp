@@ -18,14 +18,14 @@ typedef std::map<int, Usuario> tipo_mapa_usuario;
 
 //Retorna true se a string lixo estiver no mapa geral e false no caso contrário
 // Daniel: Seria uma boa jogar isso pra dentro dos contrutores?
-bool verifica_no_mapa_geral_se_existe_o_lixo(tipo_mapa_geral mapa, string s)
+bool verifica_no_mapa_geral_se_existe_o_lixo(tipo_mapa_geral mapa, std::string s)
 {
-	if (mapa.empty == 1)
+	if (mapa.empty() == 1)
 	{
 		return false;
 	}
 		
-	else if (mapa.find[s] == mapa.end)
+	else if (mapa.find(s) == mapa.end())
 		{
 			return false;
 		}
