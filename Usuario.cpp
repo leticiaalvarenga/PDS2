@@ -129,5 +129,31 @@ void Usuario::mensagem_de_armazenamento(){
     if(aux == 's' || aux == 'S') {_is_organico = true;};
 
     //letícia, coloque as mensagens aqui usando if-else, fazendo favor
+    
+    if(_is_toxico == true){
+        std::cout << "Para o descarte de material tóxico, envolva o lixo em sacolas plásticas ou em caixa plasticas e deposite em postos de coleta específicos. " << endl;
+    }
+    else if(_is_perecivel == true){
+        std::cout << "Para o descarte de material perecível..." << endl;
+    } 
+    else if(_is_cortante == true){
+        std::cout << "Para o descarte de material cortante..." << endl;
+    }
+    else if(_is_solido == true){
+        std::cout << "Para o descarte de material sólido..." << endl;
+    }
+    else if(_is_liquido == true){
+        std::cout << "Para o descarte de líquidos..." << endl;
+    }
+    else if(_is_metal == true){
+        std::cout << "Para o descarte de metal..." << endl;
+    }
+    else if(_is_plastico == true){
+        std::cout << "Para o descarte de material plástico.." << endl;
+    }
+    else {//organico
+        std::cout << "Para o descarte de material orgânico..." << endl;
+    }
+    
 
 }
