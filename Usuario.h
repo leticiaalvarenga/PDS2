@@ -3,7 +3,8 @@
 
 #include <iostream>
 
-class Usuario{
+class Usuario
+{
 private:
 
 	std::string _nome;
@@ -21,7 +22,8 @@ public:
 
 	Usuario(tipo_mapa_usuario mapa_usuario, tipo_mapa_geral mapa_geral);
 
-	Void Atualiza();
+	void Atualiza_infos();
+	void Atualiza_lixo();
 	Usuario* Busca();
 	void mensagem_de_armazenamento();
 
