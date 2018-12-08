@@ -69,8 +69,69 @@ bool Usuario::is_doador(bool answer){
 
 }
 
-Void Usuario::Atualiza(){
-
+void Usuario::Atualiza_infos(std::map<std::string, std::vector<std::vector<int> > > mapa)
+{
+	std::cout << "Deseja alterar:" <<std::endl;
+	std::cout << "		a)Nome?" <<std::endl;
+	std::cout << "		b)Perfil de doador?" <<std::endl;
+	std::cout << "[a/b?]" <<std::endl;
+	
+	std::string answer;
+	std::cin >> answer;
+	
+	if((answer == "a")||(answer == "A"))
+	{
+		std::string nome_aux = this->_nome;
+		std::cout << "Qual nome deseja por?" <<std::endl;
+		std::string novo_nome;
+		std::cin >> novo_nome;
+		_nome = novo_nome;
+		std::cout << "Nome antigo: "<< nome_aux << std::endl;
+		std::cout << "Nome novo: "<< this->_nome << std::endl;
+		return;
+	}
+	
+	else if((answer == "b")||(answer == "B"))
+	{
+		if(this->_is_doador == true)
+		{
+			std::cout << "Trocando de doador para coletor" << std::endl;
+			this->_is_doador == false;
+			// Agora, no mapa geral, se o usurio possui seu id associado ao vector 
+			// de doadores, deve-se tirar o seu id desse vector e jogá-lo para o 
+			// vector de coletores.
+			// Obrigatoriamente, o lixo do usuario ja vai existir e estar no mapa geral
+			// Caso não esteja (dependendo da implementação do Duda), devo checar se
+			// o usuário tem ou não algum lixo definido na classe.
+			
+			// myMap[key].push_back('c'); => para adicionar no final do vetor em um mapa
+			
+			// Provavelmente devo ter que iterar o mapa todo, até achar o id do usuario 
+			// no vector de doadores
+			
+			/*CHECAR SINTAXE DE MANIPULAÇAO DO MAPA_GERAL COM O DUDA*/
+			
+			/*retiro*/
+			mapa[this->_lixo][0].erase(std::remove(mapa[this->_lixo][0].begin(), mapa[this->_lixo][0].end(), this-> get_id()), mapa[this->_lixo][0].end());
+				// fonte: https://stackoverflow.com/questions/3385229/c-erase-vector-element-by-value-rather-than-by-position
+			
+			/*adiciono*/
+			mapa[this->_lixo][1].push_back(this->get_id());
+		}
+		
+		else
+		{
+			std::cout << "Trocando de coletor para doador" << std::endl;
+			this->_is_doador == true;
+			
+            /*retiro*/
+			mapa[this->_lixo][1].erase(std::remove(mapa[this->_lixo][1].begin(), mapa[this->_lixo][1].end(), this->get_id()), mapa[this->_lixo][1].end());
+				// fonte: https://stackoverflow.com/questions/3385229/c-erase-vector-element-by-value-rather-than-by-position
+			
+			/*adiciono*/
+			mapa[this->_lixo][0].push_back(this->get_id());
+		}
+	}
 }
 
 Usuario* Usuario::Busca(){
