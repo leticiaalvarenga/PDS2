@@ -8,6 +8,11 @@
 #include "Endereco.h"
 #include "Usuario.h"
 
+
+typedef std::map< std::string, std::vector< std::vector<int>, std::vector<int>>> tipo_mapa_geral;
+typedef std::map<int, Usuario> tipo_mapa_usuario;
+typedef std::map<int, Encontro> tipo_mapa_encontros;
+
 class Encontro
 {
     public:
@@ -21,6 +26,8 @@ class Encontro
         Usuario get_usuario();
         bool get_deu_certo();
         bool get_confirmado();
+
+
 
     protected:
 
