@@ -14,7 +14,7 @@ class Encontro
         Encontro(std::string data, Endereco endereco, Usuario requisitado, Usuario requisitante, bool deu_certo, bool _confirmado, int id_usuario_encontro);
         virtual ~Encontro();
 
-        Encontro Busca_Encontro(int id_usuario, tipo_mapa_encontros mapa_encontro);
+        void Busca_Encontro(int id_usuario, tipo_mapa_encontros mapa_encontro);
 
         std::string get_data();
         Endereco get_endereco();
