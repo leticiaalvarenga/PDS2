@@ -5,6 +5,21 @@
 
 unsigned int Usuario::_novo_id = 0;
 
+unsigned int Usuario::get_id()
+{
+	return this-> _id;
+}
+
+std::string Usuario::get_lixo()
+{
+	return this-> _lixo;
+}
+
+bool Usuario::get_if_doador()
+{
+	return this-> _is_doador;
+}
+
 unsigned int Usuario::get_new_id()
 {
     _novo_id++;
@@ -24,7 +39,7 @@ Usuario::Usuario(tipo_mapa_usuario mapa_usuario, tipo_mapa_geral mapa_geral)
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 
 
-    std::cout << "Voc� pretende doar ou coletar? (D para doador e C para coletor)" <<std::endl;
+    std::cout << "Você pretende doar ou coletar? (D para doador e C para coletor)" <<std::endl;
     try
     {
         std::cin >> aux;
@@ -86,7 +101,7 @@ Usuario::Usuario(tipo_mapa_usuario mapa_usuario, tipo_mapa_geral mapa_geral)
             mapa_geral[nome_do_lixo][1].push_back(_id);
         }
     }
-    //Se o lixo do usu�rio n�o estiver no mapa geral, o programa entra nesse "else" para criar um novo lixo
+    //Se o lixo do usuário não estiver no mapa geral, o programa entra nesse "else" para criar um novo lixo
     else
     {
         mensagem_de_armazenamento();
@@ -97,10 +112,7 @@ Usuario::Usuario(tipo_mapa_usuario mapa_usuario, tipo_mapa_geral mapa_geral)
     }
 }
 
-/*Void Usuario::Atualiza()
-{
 
-}
 
 Usuario* Usuario::Busca()
 {
@@ -121,7 +133,7 @@ void Usuario::mensagem_de_armazenamento()
 
     try
     {
-        std::cout << "� t�xico? (s/n)" << std::endl;
+        std::cout << "É tóxico? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -131,7 +143,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
 
-        std::cout << "� perec�vel? (s/n)" << std::endl;
+        std::cout << "É perecível? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -141,7 +153,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
 
-        std::cout << "� cortante? (s/n)" << std::endl;
+        std::cout << "É cortante? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -151,7 +163,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
 
-        std::cout << "� s�lido? (s/n)" << std::endl;
+        std::cout << "É sólido? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -161,7 +173,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
 
-        std::cout << "� l�quido? (s/n)" << std::endl;
+        std::cout << "É líquido? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -171,7 +183,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
 
-        std::cout << "� metal? (s/n)" << std::endl;
+        std::cout << "É metal? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -181,7 +193,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
 
-        std::cout << "� pl�stico? (s/n)" << std::endl;
+        std::cout << "É plástico? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -191,7 +203,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
 
-        std::cout << "� org�nico? (s/n)" << std::endl;
+        std::cout << "É orgânico? (s/n)" << std::endl;
         std::cin >> aux;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         if(aux == 's' || aux == 'S')
@@ -201,7 +213,7 @@ void Usuario::mensagem_de_armazenamento()
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
     }
-    //let�cia, coloque as mensagens aqui usando if-else, fazendo favor
+    //letícia, coloque as mensagens aqui usando if-else, fazendo favor
     catch (Erro &e)
     {
         e.exibe_mensagem();
@@ -219,3 +231,210 @@ std::string to_upper_case(std::string s)
 
 	return aux;
 }
+
+void Usuario::Atualiza_infos(std::map<std::string, std::vector<std::vector<int> > > mapa)
+{
+	std::cout << "Deseja alterar:" <<std::endl;
+	std::cout << "		a)Nome?" <<std::endl;
+	std::cout << "		b)Perfil de doador?" <<std::endl;
+	std::cout << "[a/b?]" <<std::endl;
+	
+	std::string answer;
+	std::cin >> answer;
+	
+	if((answer == "a")||(answer == "A"))
+	{
+		std::string nome_aux = this->_nome;
+		std::cout << "Qual nome deseja por?" <<std::endl;
+		std::string novo_nome;
+		std::cin >> novo_nome;
+		_nome = novo_nome;
+		std::cout << "Nome antigo: "<< nome_aux << std::endl;
+		std::cout << "Nome novo: "<< this->_nome << std::endl;
+		return;
+	}
+	
+	else if((answer == "b")||(answer == "B"))
+	{
+		if(this->_is_doador == true)
+		{
+			std::cout << "Trocando de doador para coletor" << std::endl;
+			this->_is_doador == false;
+			
+			// Agora, no mapa geral, se o usurio possui seu id associado ao vector 
+			// de doadores, deve-se tirar o seu id desse vector e jogá-lo para o 
+			// vector de coletores.
+			// Obrigatoriamente, o lixo do usuario ja vai existir e estar no mapa geral
+			// Caso não esteja (dependendo da implementação do Duda), devo checar se
+			// o usuário tem ou não algum lixo definido na classe.
+			
+			// myMap[key].push_back('c'); => para adicionar no final do vetor em um mapa
+			
+			// Provavelmente devo ter que iterar o mapa todo, até achar o id do usuario 
+			// no vector de doadores
+			
+			/*CHECAR SINTAXE DE MANIPULAÇAO DO MAPA_GERAL COM O DUDA*/
+			
+			/*retiro*/
+			mapa[this->_lixo][0].erase(std::remove(mapa[this->_lixo][0].begin(), mapa[this->_lixo][0].end(), this-> get_id()), mapa[this->_lixo][0].end());
+				// fonte: https://stackoverflow.com/questions/3385229/c-erase-vector-element-by-value-rather-than-by-position
+			
+			/*adiciono*/
+			mapa[this->_lixo][1].push_back(this->get_id());
+		}
+		
+		else
+		{
+			std::cout << "Trocando de coletor para doador" << std::endl;
+			this->_is_doador == true;
+			
+			mapa[this->_lixo][1].erase(std::remove(mapa[this->_lixo][1].begin(), mapa[this->_lixo][1].end(), this->get_id()), mapa[this->_lixo][1].end());
+				// fonte: https://stackoverflow.com/questions/3385229/c-erase-vector-element-by-value-rather-than-by-position
+			
+			/*adiciono*/
+			mapa[this->_lixo][0].push_back(this->get_id());
+		}
+	}
+}
+
+void Atualiza_lixo(//Forncer os mapas
+				  //std::map<std::string, std::vector<int> > mapa_coletores,
+				  //std::map<std::string, std::vector<int> > mapa_doadores,
+				  // Vou fazer com o mapa geral
+				  std::map<std::string, std::vector<std::vector<int> > > mapa
+				  )
+{
+	std::cout <<"Você pretende atualizar seu lixo?" "[y/n]"<<std::endl;
+	std::string resp;
+	std::cin >> resp;
+	if((resp == "Y")||(resp == "y"))
+	{
+		std::cout <<"Qual seu novo lixo?(CAIXA ALTA, por favor)"<<std::endl;
+		std::string novo_lixo;
+		std::cin >> novo_lixo;
+		//verificar se o lixo ja existe no mapa
+						// se existir, muda
+						// se não, retorna com mensagem
+		if(_is_doador == true)
+		{
+			if (mapa.empty() == 1)
+			{
+				return;
+			}
+		
+			else if (mapa.find(novo_lixo) == mapa.end())
+			{
+				//Não existe, porém deve-se adiciona-lo antes de mudar.
+				std::cout << "Lixo requerido ainda não existe! Favor adicioná-lo antes da autalização;" << std::endl;
+
+				return;
+			}
+			
+			else
+			{
+				//Existe no mapa, portanto, podemos atualizar
+				//Primeiro, retiramos o id do mapa de doadores, depois adicionamos no 
+				// apendice do novo lixo
+				
+				// mapa -> mapa_doadores
+				
+				mapa[get_lixo()].erase(std::remove(mapa[this->_lixo][0].begin(), mapa[this->_lixo][0].end(), get_id()), mapa[this->_lixo][0].end());
+				// agora adicionamos o id no vector do novo lixo
+				mapa[novo_lixo].push_back(get_id());
+				return;
+			}
+		}
+		
+		else
+		{
+			if (mapa.empty() == 1)
+			{
+				return;
+			}
+		
+			else if (mapa.find(novo_lixo) == mapa.end())
+			{
+				//Não existe, porém deve-se adiciona-lo antes de mudar.
+				std::cout << "Lixo requerido ainda não existe! Favor adicioná-lo antes da autalização;" << std::endl;
+				return;
+			}
+			
+			else
+			{
+				//Existe no mapa, portanto, podemos atualizar
+				//Primeiro, retiramos o id do mapa de doadores, depois adicionamos no 
+				// apendice do novo lixo
+				
+				// mapa -> mapa_coletores
+				
+				mapa[this->get_lixo].erase(std::remove(mapa[this->get_lixo][1].begin(), mapa[this->get_lixo][1].end(), this-> get_id()), mapa[this->get_lixo][1].end());
+				// agora adicionamos o id no vector do novo lixo
+				mapa[novo_lixo].push_back(get_id());
+				return;
+			}
+		}
+	}
+	
+	else
+	{
+		return 0;
+	}
+}	
+
+
+void Usuario::Busca(std::map<std::string, std::vector<std::vector<int> > > mapa_geral, std::map<int, Usuario> mapa_usuario) //retorna lista de users que deram "match"
+{
+	std::cout <<"Que lixo busca?" <<std::endl;
+	std::string resp;
+	std::cin >> resp;
+	//conferimos, no mapa central, se existe
+	//caso exista, buscamos os ids referentes, e, com eles, vamos ao mapa de usuarios
+	// e retornamos as informações deles.
+	if (mapa_geral.empty() == 1)
+			{
+				return 0;
+			}
+		
+	else if (mapa_geral.find(resp) == mapa_geral.end())
+	{
+		//Não existe, porém deve-se adiciona-lo antes de mudar.
+		std::cout << "Lixo requerido ainda não existe!" << std::endl;
+		return 0;
+	}
+	
+	else //lixo existe no mapa
+	{
+		//devemos checar se é doador ou não para saber em qual vetor consultar;
+		if(_is_doador == true)//faremos pesquisas no [1]
+		{
+			std::vector<int> aux(mapa_geral["resp"][1]); //aparentemente isso faz a mesma coisa do swap
+			// vetor guarda os ids correspondentes
+			
+			//busca no mapa de usuarios
+			std::cout << "Coletores encontrados:" << std:: endl;
+			for(int i = 0; i < aux.size(); i++)
+			{
+				std::cout<<"Coletor"<< i <<":"<<std::endl;
+				std::cout<< "Nome: "<<mapa_usuario[aux[i]].get_nome()<<std::endl;
+				// tamebém deveria retornar o endereço
+			}
+		}
+		else //faremos pesquisa no [0]
+		{
+			std::vector<int> aux(mapa_geral["resp"][0]); //aparentemente isso faz a mesma coisa do swap
+			// vetor guarda os ids correspondentes
+			
+			//busca no mapa de usuarios
+			std::cout << "Doadores encontrados:" << std:: endl;
+			for(int i = 0; i < aux.size(); i++)
+			{
+				std::cout<<"Doador"<< i <<":"<<std::endl;
+				std::cout<< "Nome: "<<mapa_usuario[aux[i]].get_nome()<<std::endl;
+				// tamebém deveria retornar o endereço
+			}
+		}
+	}
+	
+	
+}
+
