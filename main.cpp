@@ -22,6 +22,23 @@ int main(){
     tipo_mapa_usuario mapa_usuario;
     tipo_mapa_geral mapa_geral;
     tipo_mapa_encontros mapa_encontros;
+	
+     Endereco endereco;
+    endereco.Endereco();
+
+    Usuario u;
+    u._nome = "Leticia";
+    u._is_doador = true;
+    u._lixo = "Plastico";
+    u._endereco = endereco;
+
+    Usuario requisitante;
+    requisitante._nome = "Jacare";
+    requisitante._is_doador = false;
+    requisitante._lixo = "Plastico";
+    requisitante._endereco = endereco;
+
+    Encontro encontro = new Encontro("08-12-2018", endereco, u, requisitante, false, false, 0);
 
 
     return 0;
