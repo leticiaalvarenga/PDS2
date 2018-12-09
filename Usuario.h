@@ -12,6 +12,7 @@ private:
     static unsigned int _novo_id;
 
 	std::string _nome;
+	std::string _lixo;
 	unsigned int _id;
 	bool _is_doador;
 	//Endereco _endereco;
