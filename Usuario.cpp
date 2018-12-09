@@ -76,7 +76,7 @@ Usuario::Usuario(tipo_mapa_usuario mapa_usuario, tipo_mapa_geral mapa_geral)
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 
     nome_do_lixo = to_upper_case(nome_do_lixo);
-
+    _lixo = nome_do_lixo;
     if(/*verifica_no_mapa_geral_se_existe_o_lixo(mapa_geral, tipo_de_lixo, nome_do_lixo)*/ == true)
     {
         if (_is_doador == true){
