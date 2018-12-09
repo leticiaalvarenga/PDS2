@@ -1,37 +1,32 @@
-#ifndef USUARIO_H
-#define USUARIO_H
+#ifndef USUARIO_H_INCLUDED
+#define USUARIO_H_INCLUDED
 
 #include <iostream>
+#include <map>
+#include <vector>
+#include "Erro.h"
 
 class Usuario
 {
 private:
+    static unsigned int _novo_id;
 
 	std::string _nome;
-
-	static unsigned int _novo_id;
-
 	unsigned int _id;
-	
-	std::string _lixo;
-
 	bool _is_doador;
-
-	//Endereco do usuario (Tipo Lugar)
-	Lugar _endereco;
+	//Endereco _endereco;
 
 public:
+    static unsigned int get_new_id();
 
 	Usuario(tipo_mapa_usuario mapa_usuario, tipo_mapa_geral mapa_geral);
-	std::string get_lixo();
-	bool get_if_doador();
-	unsigned int get_id();
-	std::string get_nome();
-	void Atualiza_infos(std::map<std::string, std::vector<std::vector<int> > > mapa);
-	void Atualiza_lixo(std::map<std::string, std::vector<std::vector<int> > > mapa);
-	void Busca(std::map<std::string, std::vector<std::vector<int> > > mapa_geral, std::map<int, Usuario> mapa_usuario);
+	//Void Atualiza();
+	//Usuario* Busca();
 	void mensagem_de_armazenamento();
+};
 
-}
+typedef std::map<int, Usuario> tipo_mapa_usuario;
+typedef std::map<std::string, std::vector< std::vector<int> > > tipo_mapa_geral;
+std::string to_upper_case(std::string s);
 
-#endif // USUARIO_H
+#endif // USUARIO_H_INCLUDED
