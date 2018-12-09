@@ -368,6 +368,8 @@ void Atualiza_lixo(//Forncer os mapas
 				mapa[get_lixo()].erase(std::remove(mapa[this->_lixo][0].begin(), mapa[this->_lixo][0].end(), get_id()), mapa[this->_lixo][0].end());
 				// agora adicionamos o id no vector do novo lixo
 				mapa[novo_lixo].push_back(get_id());
+				this->_lixo = novo_lixo;
+
 				return;
 			}
 		}
@@ -397,6 +399,8 @@ void Atualiza_lixo(//Forncer os mapas
 				mapa[this->get_lixo].erase(std::remove(mapa[this->get_lixo][1].begin(), mapa[this->get_lixo][1].end(), this-> get_id()), mapa[this->get_lixo][1].end());
 				// agora adicionamos o id no vector do novo lixo
 				mapa[novo_lixo].push_back(get_id());
+				this->_lixo = novo_lixo;
+
 				return;
 			}
 		}
