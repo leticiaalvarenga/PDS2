@@ -212,8 +212,35 @@ void Usuario::mensagem_de_armazenamento()
             _is_organico = false;
         else
             throw Erro("Entrada invalida: Nao pode ser determinada carater toxico");
+	    
+	    
+	 //Mensagens
+	 if(_is_toxico){
+	      std::cout << "Cuidado para não intoxicar. Descarte em locais que pegam apenas materiais tóxicos." << std:endl;
+	 }  
+	 else if(_is_perecivel){
+	      std::cout << "Coloque em local fresco e arejado." << std:endl;
+	 }
+	 else if(_is_solido){
+	      std::cout << "Guarde em locais que não machuque os outros até o dia de sua coleta." << std:endl;
+	 } 
+	 else if(_is_liquido){
+	      std::cout << "Coloque em garrafas e tampe bem." << std:endl;
+	 }
+	 else if(_is_cortante){
+	      std::cout << "Embale bem os objetos cortantes para não machucar quem for receber estes materiais." << std:endl;
+	 }
+	 else if(_is_metal){
+	      std::cout << "Guarde bem os metais para não machucar quem for recolher." << std:endl;
+	 }
+	 else if(_is_plastico){
+	      std::cout << "Feche bem as garrafas plásticas (para não acumular água) até o dia de sua coleta." << std:endl;
+	 } 
+	 else{ //_is_organico
+	      std::cout << "Deixe em lugar arejado até o dia de sua coleta." << std:endl;
+	 }   
     }
-    //letícia, coloque as mensagens aqui usando if-else, fazendo favor
+    
     catch (Erro &e)
     {
         e.exibe_mensagem();
@@ -380,6 +407,80 @@ void Atualiza_lixo(//Forncer os mapas
 		return 0;
 	}
 }	
+
+
+
+void Usuario::Busca_Encontro(int id_usuario, tipo_mapa_encontros mapa_encontro){
+    //Essa busca de encontros, passa o id do usuário que está querendo fazer a busca,
+    //(necessário para conseguir procurar o usuário e procura a lista de vetores de
+    //inteiros que tem todos os encontros daquela pessoa e compara os
+    //inteiros com os ids do mapa e retorna: nome do lixo, endereço e data.
+
+    Usuario usuario;
+    Usuario usuario_que_procura = usuario.Busca(id_usuario); //Essa busca poderá ser feita com o id
+    std::string aux_encontro;
+    std::string aux_cancelar;
+    std::string aux_confirmar;
+
+    //for para imprimir a lista de encontros
+    int indice = 0;
+    for (std::vector<int>::iterator it = usuario_que_procura._encontros.begin(); it != usuario_que_procura._encontros.end(); ++it){
+        map::const_iterator pos = mapa_encontro.find(*it);
+        if(pos != mapa_encontro.end()){
+            Encontro valor = pos->second; //Pega o valor encontro
+            std::cout << indice << " - ";
+            std::cout << "Nome do lixo: " << valor._requisitante._lixo <<
+                         ". Data do encontro: " << valor.get_data() <<
+                         ". Endereco do encontro " << valor.get_endereco() << std::endl;
+
+            std::cout << "Deseja escolher este encontro? sim [s], nao [n]" << std::endl;
+            std::cin >> aux_encontro;
+            //Colocar aqui um try catch -> se não for nem s e nem n..
+            if(aux_encontro == "s"){
+                if((usuario_que_procura._id == valor._requisitante._id) && (valor.get_confirmado() == true)){ //usuário que procura é o requisitante
+                    if(valor.get_deu_certo() == true){
+                        ~valor();
+                    }
+                    else{
+                        std::cout << "Cancelar encontro? [s]/ [n]" << std::endl;
+                        std::cin >> aux_cancelar;
+
+                        if(aux_cancelar == "s"){
+                            ~valor();
+                        }
+                        else{
+                            aux_encontro = "n";
+                            break;
+                        }
+                    }
+                }
+
+
+
+                if((usuario_que_procura._id != valor._requisitante._id) && (valor.get_confirmado() == false)){//usuário que procura não é o requisitante
+                    std::cout << "Deseja confirmar o encontro? [s]/ [n] ";
+                    std::cin >> aux_confirmar;
+
+                    if(aux_confirmar == "s"){
+                        valor._confirmado = true;
+                    }
+                    else{
+                        ~valor();
+                    }
+
+                }
+            }
+            else{
+                std::cout << "Próximo da lista.. " << std::endl;
+                indice++;
+            }
+
+        }
+    }
+
+
+
+}
 
 
 void Usuario::Busca(std::map<std::string, std::vector<std::vector<int> > > mapa_geral, std::map<int, Usuario> mapa_usuario) //retorna lista de users que deram "match"
