@@ -24,7 +24,7 @@ public:
 	void Atualiza_infos(std::map<std::string, std::vector<std::vector<int> > > mapa);
 	void Atualiza_lixo(std::map<std::string, std::vector<std::vector<int> > > mapa);
 	void Busca(std::map<std::string, std::vector<std::vector<int> > > mapa_geral, std::map<int, Usuario> mapa_usuario); //add
-	void Usuario::Busca_Encontro(int id_usuario, std::map<int, Encontro> mapa_encontro); //add
+	void Busca_Encontro(int id_usuario, std::map<int, Encontro> mapa_encontro); //add
 	void mensagem_de_armazenamento();
 	std::string get_lixo(); //add
 	bool get_if_doador(); //add
