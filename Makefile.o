@@ -2,8 +2,6 @@ CC := g++-4.8
 
 SRCDIR := src
 
-TSTDIR := tests
-
 OBJDIR := build
 
 BINDIR := bin
@@ -16,8 +14,6 @@ SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 
 OBJECTS := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-
-TSTSOURCES := $(shell find $(TSTDIR) -type f -name *.$(SRCEXT))
 
 # -g debug, --coverage para cobertura
 
