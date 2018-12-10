@@ -23,7 +23,7 @@ int main(){
     tipo_mapa_geral mapa_geral;
     tipo_mapa_encontros mapa_encontros;
 	
-     Endereco endereco;
+    /* Endereco endereco;
     endereco.Endereco();
 
     Usuario u;
@@ -38,7 +38,7 @@ int main(){
     requisitante._lixo = "Plastico";
     requisitante._endereco = endereco;
 
-    Encontro encontro = new Encontro("08-12-2018", endereco, u, requisitante, false, false, 0);
+    Encontro encontro = new Encontro("08-12-2018", endereco, u, requisitante, false, false, 0);*/
 
 
     return 0;
