@@ -145,9 +145,6 @@ void Usuario::Visualiza_encontros(map<int, Encontro> & mapa_encontro, map<int, U
 
         mapa_encontro[*it].mostra_encontro();
 
-        cout << "meu id: " << this->_id << endl;
-        cout << "outro id: " << mapa_encontro[*it].get_requisitante() << endl;
-
         if(this->_id == mapa_encontro[*it].get_requisitante()){
 
             if(mapa_encontro[*it].get_confirmado() == false){
