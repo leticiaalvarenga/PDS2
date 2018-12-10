@@ -11,8 +11,6 @@ BINDIR := bin
 
 MAIN := program/main.cpp
 
-TESTER := program/tester.cpp
-
 SRCEXT := cpp
 
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
