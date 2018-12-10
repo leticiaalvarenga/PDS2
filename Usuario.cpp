@@ -114,10 +114,7 @@ Usuario::Usuario(tipo_mapa_usuario mapa_usuario, tipo_mapa_geral mapa_geral)
 
 
 
-Usuario* Usuario::Busca()
-{
 
-}*/
 
 void Usuario::mensagem_de_armazenamento()
 {
@@ -324,7 +321,7 @@ void Usuario::Atualiza_infos(std::map<std::string, std::vector<std::vector<int> 
 	}
 }
 
-void Atualiza_lixo(//Forncer os mapas
+void Usuario::Atualiza_lixo(//Forncer os mapas
 				  //std::map<std::string, std::vector<int> > mapa_coletores,
 				  //std::map<std::string, std::vector<int> > mapa_doadores,
 				  // Vou fazer com o mapa geral
@@ -342,7 +339,7 @@ void Atualiza_lixo(//Forncer os mapas
 		//verificar se o lixo ja existe no mapa
 						// se existir, muda
 						// se não, retorna com mensagem
-		if(_is_doador == true)
+		if(this->_is_doador == true)
 		{
 			if (mapa.empty() == 1)
 			{
@@ -365,11 +362,10 @@ void Atualiza_lixo(//Forncer os mapas
 				
 				// mapa -> mapa_doadores
 				
-				mapa[get_lixo()].erase(std::remove(mapa[this->_lixo][0].begin(), mapa[this->_lixo][0].end(), get_id()), mapa[this->_lixo][0].end());
+				mapa[get_lixo()][0].erase(std::remove(mapa[this->_lixo][0].begin(), mapa[this->_lixo][0].end(), get_id()), mapa[this->_lixo][0].end());
 				// agora adicionamos o id no vector do novo lixo
-				mapa[novo_lixo].push_back(get_id());
+				mapa[novo_lixo][1].push_back(get_id());
 				this->_lixo = novo_lixo;
-
 				return;
 			}
 		}
@@ -396,11 +392,10 @@ void Atualiza_lixo(//Forncer os mapas
 				
 				// mapa -> mapa_coletores
 				
-				mapa[this->get_lixo].erase(std::remove(mapa[this->get_lixo][1].begin(), mapa[this->get_lixo][1].end(), this-> get_id()), mapa[this->get_lixo][1].end());
+				mapa[get_lixo()][1].erase(std::remove(mapa[this->_lixo][1].begin(), mapa[this->_lixo][1].end(), get_id()), mapa[this->_lixo][1].end());
 				// agora adicionamos o id no vector do novo lixo
-				mapa[novo_lixo].push_back(get_id());
+				mapa[novo_lixo][0].push_back(get_id());
 				this->_lixo = novo_lixo;
-
 				return;
 			}
 		}
@@ -408,7 +403,7 @@ void Atualiza_lixo(//Forncer os mapas
 	
 	else
 	{
-		return 0;
+		return;
 	}
 }	
 
@@ -497,14 +492,14 @@ void Usuario::Busca(std::map<std::string, std::vector<std::vector<int> > > mapa_
 	// e retornamos as informações deles.
 	if (mapa_geral.empty() == 1)
 			{
-				return 0;
+				return;
 			}
 		
 	else if (mapa_geral.find(resp) == mapa_geral.end())
 	{
 		//Não existe, porém deve-se adiciona-lo antes de mudar.
 		std::cout << "Lixo requerido ainda não existe!" << std::endl;
-		return 0;
+		return;
 	}
 	
 	else //lixo existe no mapa
@@ -542,4 +537,3 @@ void Usuario::Busca(std::map<std::string, std::vector<std::vector<int> > > mapa_
 	
 	
 }
-
